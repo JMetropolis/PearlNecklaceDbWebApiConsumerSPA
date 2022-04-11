@@ -5,7 +5,7 @@ using PearlNecklaceDbWebApiConsumerSPA.Models;
 
 namespace PearlNecklaceDbWebApiConsumerSPA.Services
 {
-    public interface ISeidoDbHttpService
+    public interface IPearlNecklaceDbHttpService
     {
         Task<IEnumerable<ICustomer>> GetCustomersAsync();
         Task<ICustomer> GetCustomerAsync(Guid custId);

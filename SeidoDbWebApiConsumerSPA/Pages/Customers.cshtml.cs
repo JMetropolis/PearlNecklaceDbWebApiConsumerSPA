@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SeidoDbWebApiConsumerSPA.Models;
-using SeidoDbWebApiConsumerSPA.Services;
+using PearlNecklaceDbWebApiConsumerSPA.Models;
+using PearlNecklaceDbWebApiConsumerSPA.Services;
 
-namespace SeidoDbWebApiConsumerSPA.Pages
+namespace PearlNecklaceDbWebApiConsumerSPA.Pages
 {
     public class CustomersModel : PageModel
     {
-        ISeidoDbHttpService _httpService;
+        IPearlNecklaceDbHttpService _httpService;
 
         public IEnumerable<ICustomer> Customers { get; private set; }
         
@@ -61,9 +61,9 @@ namespace SeidoDbWebApiConsumerSPA.Pages
         }
         #endregion
 
-        public CustomersModel()//ISeidoDbHttpService service)
+        public CustomersModel()//IPearlNecklaceDbHttpService service)
         {
-            this._httpService = new SeidoDbHttpService();// service;
+            this._httpService = new PearlNecklaceDbHttpService();// service;
         }
     }
 }

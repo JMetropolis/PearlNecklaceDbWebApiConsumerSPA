@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SeidoDbWebApiConsumerSPA.Services;
+using PearlNecklaceDbWebApiConsumerSPA.Services;
 
 namespace SeidoDb.Web
 {
@@ -11,7 +11,7 @@ namespace SeidoDb.Web
 		public void ConfigureServices(IServiceCollection services)
         {
 			services.AddRazorPages();           //Enables Razorpages
-			services.AddScoped<ISeidoDbHttpService, SeidoDbHttpService>();
+			services.AddScoped<IPearlNecklaceDbHttpService, PearlNecklaceDbHttpService>();
 		}
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

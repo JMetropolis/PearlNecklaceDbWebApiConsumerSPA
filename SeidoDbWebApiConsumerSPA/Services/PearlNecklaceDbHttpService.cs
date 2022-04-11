@@ -6,12 +6,12 @@ using PearlNecklaceDbWebApiConsumerSPA.Models;
 
 namespace PearlNecklaceDbWebApiConsumerSPA.Services
 {
-    public class SeidoDbHttpService : BaseHttpService, ISeidoDbHttpService
+    public class PearlNecklaceDbHttpService : BaseHttpService, IPearlNecklaceDbHttpService
     {
         readonly Uri _baseUri;
         readonly IDictionary<string, string> _headers;
 
-        public SeidoDbHttpService()
+        public PearlNecklaceDbHttpService()
         {
             _baseUri = new Uri("https://localhost:5001");
             //_baseUri = new Uri("http://localhost:5000");
