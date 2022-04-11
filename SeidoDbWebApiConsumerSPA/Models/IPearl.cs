@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SeidoDbWebApiConsumerSPA.Models
+namespace PearlNecklaceDbWebApiConsumerSPA.Models
 {
 
     public interface IPearl : IEquatable<IPearl>, IRandomInit

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeidoDbWebApiConsumerSPA.Models
+namespace PearlNecklaceDbWebApiConsumerSPA.Models
 {
     public interface INecklace : IEquatable<INecklace>, IRandomInit
     {

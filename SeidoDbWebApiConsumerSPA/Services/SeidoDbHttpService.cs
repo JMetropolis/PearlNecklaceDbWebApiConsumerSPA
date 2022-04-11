@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using SeidoDbWebApiConsumerSPA.Models;
+using PearlNecklaceDbWebApiConsumerSPA.Models;
 
-namespace SeidoDbWebApiConsumerSPA.Services
+namespace PearlNecklaceDbWebApiConsumerSPA.Services
 {
     public class SeidoDbHttpService : BaseHttpService, ISeidoDbHttpService
     {

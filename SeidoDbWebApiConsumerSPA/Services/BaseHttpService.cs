@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace SeidoDbWebApiConsumerSPA.Services
+namespace PearlNecklaceDbWebApiConsumerSPA.Services
 {
     public abstract class BaseHttpService
     {

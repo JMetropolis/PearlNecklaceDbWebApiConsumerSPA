@@ -3,36 +3,91 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SeidoDbWebApiConsumerSPA.Models
+namespace PearlNecklaceDbWebApiConsumerSPA.Models
 {
-    public class Pearl : IPearl
-    {
-        public int ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int necklaceID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Size { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IPearl.PearlColor Color { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IPearl.PearlShape Shape { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IPearl.PearlType Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	public enum PearlColor { Black, White, Pink }
+	public enum PearlShape { Round, Tear }
+	public enum PearlType { Freshwater, Saltwater }
+	public class Pearl
+	{
+		//const int MinPearlSize = 5;
+		//const int MaxPearlSize = 25;
+		public int ID { get; set; }
+		public int necklaceID { get; set; }
+		public int Size { get; set; }
+		public PearlColor Color { get; set; }
+		public PearlShape Shape { get; set; }
+		public PearlType Type { get; set; }
+		public int Price
+		{
+			get
+			{
+				if (Type == PearlType.Saltwater)
+				{
+					return (Size * 50) * 2;
+				}
+				else
+				{
+					return Size * 50;
+				}
+			}
+			set
+			{
 
-        public int CompareTo(Pearl other)
-        {
-            throw new NotImplementedException();
-        }
+			}
+		}
 
-        public bool Equals(Pearl other)
-        {
-            throw new NotImplementedException();
-        }
+		public int CompareTo(Pearl other)
+		{
+			if (this.Size != other.Size)
+				return this.Size.CompareTo(other.Size);
+			if (this.Color != other.Color)
+				return this.Color.CompareTo(other.Color);
+			return this.Shape.CompareTo(other.Shape);
+		}
 
-        public bool Equals(IPearl other)
-        {
-            throw new NotImplementedException();
-        }
+		public bool Equals(Pearl other)
+		{
+			return (Size, Color, Shape, Type) == (other.Size, other.Color, other.Shape, other.Type);
+		}
 
-        public void RandomInit()
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public bool Equals(IPearl other)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override string ToString()
+		{
+			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek\n \n";
+		}
+
+		public void RandomInit()
+		{
+			var rnd = new Random();
+			Size = rnd.Next(5, 26);
+			Color = (PearlColor)rnd.Next((int)PearlColor.Black, (int)PearlColor.Pink + 1);
+			Shape = (PearlShape)rnd.Next((int)PearlShape.Round, (int)PearlShape.Tear + 1);
+			Type = (PearlType)rnd.Next((int)PearlType.Freshwater, (int)PearlType.Saltwater + 1);
+		}
+
+		public static class Factory
+		{
+			public static Pearl CreateRandomPearl()
+			{
+				var p = new Pearl();
+				p.RandomInit();
+				return p;
+			}
+
+			public static Pearl CreatePearl(int size, PearlColor color, PearlShape shape, PearlType type)
+			{
+				var pearl = new Pearl();
+				pearl.Size = size;
+				pearl.Color = color;
+				pearl.Shape = shape;
+				pearl.Type = type;
+				return pearl;
+			}
+		}
+	}
 }
