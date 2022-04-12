@@ -13,7 +13,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
 
         public PearlNecklaceDbHttpService()
         {
-            _baseUri = new Uri("https://localhost:7026");
+            _baseUri = new Uri("https://localhost:7026"); //Original 5001
             //_baseUri = new Uri("http://localhost:5000");
             _headers = new Dictionary<string, string>();
         }
@@ -38,12 +38,12 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
         {
             var url = new Uri(_baseUri, $"/api/necklaces/{necklace.NecklaceID}");
 
-            //Confirm customer exisit in Database
+            //Confirm necklace exisit in Database
             var cusToUpdate = await SendRequestAsync<Necklace>(url, HttpMethod.Get, _headers);
             if (cusToUpdate == null)
-                return null;  //Customer does not exist
+                return null;  //Necklace does not exist
 
-            //Update Customer, always gives null response, NonSuccess response errors are thrown
+            //Update Necklace, always gives null response, NonSuccess response errors are thrown
             await SendRequestAsync<Necklace>(url, HttpMethod.Put, _headers, necklace);
 
             return necklace;
@@ -61,12 +61,12 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
         {
             var url = new Uri(_baseUri, $"/api/necklaces/{necklaceId}");
 
-            //Confirm customer exisit in Database
+            //Confirm necklace exisit in Database
             var necklaceToDelete = await SendRequestAsync<Necklace>(url, HttpMethod.Get, _headers);
             if (necklaceToDelete == null)
-                return null;  //Customer does not exist
+                return null;  //Necklace does not exist
 
-            //Delete Customer, always gives null response, NonSuccess response errors are thrown
+            //Delete Necklace, always gives null response, NonSuccess response errors are thrown
             await SendRequestAsync<Necklace>(url, HttpMethod.Delete, _headers);
             return necklaceToDelete;
         }
