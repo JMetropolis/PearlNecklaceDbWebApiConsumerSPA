@@ -33,14 +33,14 @@
             <div class="col">
                 <p>Enter details for a new Necklace</p>
                 <form method="post">
-                    <div><input asp-for="NewNecklace.Name" placeholder="Name"/></div>
+                    <div><input asp-for="NewNecklace.Name" placeholder="NewNecklace.Name"/></div>
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
             <div class="col">
                 <p>Edit details for an existing Necklace @Model.UpdatedNecklace?.NecklaceID</p>
                 <form method="post">
-                    <div><input asp-for="UpdatedNecklace.Name" placeholder="Name"/></div>
+                    <div><input asp-for="UpdatedNecklace.Name" placeholder="UpdatedNecklace.Name"/></div>
                     <button class="btn btn-primary" asp-page-handler="update" asp-route-id="@Model.UpdatedNecklace?.NecklaceID.ToString()">Update</button>
                 </form>
             </div>

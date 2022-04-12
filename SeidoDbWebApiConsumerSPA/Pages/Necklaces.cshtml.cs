@@ -16,9 +16,10 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
             Necklaces = await _httpService.GetNecklacesAsync();
             Necklaces = Necklaces.OrderBy(c => c.Name).Take(10);
         }
-        public async Task<IActionResult> OnPostDelete(int necklaceId)
+        public async Task<IActionResult> OnPostDelete(string necklaceId) //zero()
         {
-            await _httpService.DeleteNecklaceAsync(necklaceId);
+            int intID = Int32.Parse(necklaceId);
+            await _httpService.DeleteNecklaceAsync(intID);
 
             return RedirectToPage("/necklaces");
         }
@@ -41,14 +42,16 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
         [BindProperty]
         public Necklace UpdatedNecklace { get; set; }
 
-        public async Task OnPostEdit(int necklaceId)
+        public async Task OnPostEdit(string necklaceId)
         {
-            UpdatedNecklace = (Necklace)await _httpService.GetNecklaceAsync(necklaceId);
+            int intID = Int32.Parse(necklaceId);
+            UpdatedNecklace = (Necklace)await _httpService.GetNecklaceAsync(intID);
         }
 
-        public async Task<IActionResult> OnPostUpdate(int necklaceId)
+        public async Task<IActionResult> OnPostUpdate(string necklaceId)
         {
-            var necklace = (Necklace)await _httpService.GetNecklaceAsync(necklaceId);
+            int intID = Int32.Parse(necklaceId);
+            var necklace = (Necklace)await _httpService.GetNecklaceAsync(intID);
 
             //necklace.Copy(UpdatedNecklace);
             await _httpService.UpdateNecklaceAsync(necklace);
