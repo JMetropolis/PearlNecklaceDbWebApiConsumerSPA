@@ -33,27 +33,15 @@
             <div class="col">
                 <p>Enter details for a new Necklace</p>
                 <form method="post">
-                    <div><input asp-for="NewNecklace.FirstName" placeholder="Firstname"/></div>
-                    <div><input asp-for="NewNecklace.LastName" placeholder="Lastname"/></div>
-                    <div><input asp-for="NewNecklace.Adress" placeholder="Adress"/></div>
-                    <div><input asp-for="NewNecklace.ZipCode" placeholder="Zipcode"/></div>
-                    <div><input asp-for="NewNecklace.City" placeholder="City"/></div>
-                    <div><input asp-for="NewNecklace.Country" placeholder="Country"/></div>
-                    <div><input asp-for="NewNecklace.BirthDate" placeholder="Birthdate"/></div>
+                    <div><input asp-for="NewNecklace.Name" placeholder="Name"/></div>
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
             <div class="col">
-                <p>Edit details for an existing Necklace @Model.UpdatedCustomer?.CustomerID</p>
+                <p>Edit details for an existing Necklace @Model.UpdatedNecklace?.NecklaceID</p>
                 <form method="post">
-                    <div><input asp-for="UpdatedCustomer.FirstName" placeholder="Firstname"/></div>
-                    <div><input asp-for="UpdatedCustomer.LastName" placeholder="Lastname"/></div>
-                    <div><input asp-for="UpdatedCustomer.Adress" placeholder="Adress"/></div>
-                    <div><input asp-for="UpdatedCustomer.ZipCode" placeholder="Zipcode"/></div>
-                    <div><input asp-for="UpdatedCustomer.City" placeholder="City"/></div>
-                    <div><input asp-for="UpdatedCustomer.Country" placeholder="Country"/></div>
-                    <div><input asp-for="UpdatedCustomer.BirthDate" placeholder="Birthdate"/></div>
-                    <button class="btn btn-primary" asp-page-handler="update" asp-route-id="@Model.UpdatedCustomer?.CustomerID.ToString()">Update</button>
+                    <div><input asp-for="UpdatedNecklace.Name" placeholder="Name"/></div>
+                    <button class="btn btn-primary" asp-page-handler="update" asp-route-id="@Model.UpdatedNecklace?.NecklaceID.ToString()">Update</button>
                 </form>
             </div>
         </div>

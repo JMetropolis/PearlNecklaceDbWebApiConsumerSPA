@@ -13,7 +13,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
 
         public PearlNecklaceDbHttpService()
         {
-            _baseUri = new Uri("https://localhost:5001");
+            _baseUri = new Uri("https://localhost:7026");
             //_baseUri = new Uri("http://localhost:5000");
             _headers = new Dictionary<string, string>();
         }
