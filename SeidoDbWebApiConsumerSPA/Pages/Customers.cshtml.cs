@@ -7,7 +7,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
 {
     public class CustomersModel : PageModel
     {
-        IPearlNecklaceDbHttpService _httpService;
+        ICustomerDbHttpService _httpService;
 
         public IEnumerable<ICustomer> Customers { get; private set; }
         
@@ -63,7 +63,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
 
         public CustomersModel()//IPearlNecklaceDbHttpService service)
         {
-            this._httpService = new PearlNecklaceDbHttpService();// service;
+            this._httpService = new CustomerDbHttpService();// service;
         }
     }
 }

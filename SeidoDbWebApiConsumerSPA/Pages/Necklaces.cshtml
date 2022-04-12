@@ -1,0 +1,61 @@
+﻿@page
+@model PearlNecklaceDbWebApiConsumerSPA.Pages.NecklacesModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Necklace List";
+}
+<div class="row">
+    <h1 class="display-2">@ViewData["Title"]</h1>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr><th>Necklace Detail</th></tr>
+        </thead>
+        <tbody>
+            @if (Model.Necklaces != null)
+            {
+                @foreach (var necklace in Model.Necklaces)
+                {
+                    <tr>
+                        <td>@necklace</td>
+                        <form method="post">
+                            <td><button class="btn btn-default" asp-page-handler="delete" asp-route-id="@necklace.NecklaceID.ToString()">Delete</button></td>
+                            <td><button class="btn btn-default" asp-page-handler="edit" asp-route-id="@necklace.NecklaceID.ToString()">Edit</button></td>
+                        </form>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col">
+                <p>Enter details for a new Necklace</p>
+                <form method="post">
+                    <div><input asp-for="NewNecklace.FirstName" placeholder="Firstname"/></div>
+                    <div><input asp-for="NewNecklace.LastName" placeholder="Lastname"/></div>
+                    <div><input asp-for="NewNecklace.Adress" placeholder="Adress"/></div>
+                    <div><input asp-for="NewNecklace.ZipCode" placeholder="Zipcode"/></div>
+                    <div><input asp-for="NewNecklace.City" placeholder="City"/></div>
+                    <div><input asp-for="NewNecklace.Country" placeholder="Country"/></div>
+                    <div><input asp-for="NewNecklace.BirthDate" placeholder="Birthdate"/></div>
+                    <button class="btn btn-primary">Add</button>
+                </form>
+            </div>
+            <div class="col">
+                <p>Edit details for an existing Necklace @Model.UpdatedCustomer?.CustomerID</p>
+                <form method="post">
+                    <div><input asp-for="UpdatedCustomer.FirstName" placeholder="Firstname"/></div>
+                    <div><input asp-for="UpdatedCustomer.LastName" placeholder="Lastname"/></div>
+                    <div><input asp-for="UpdatedCustomer.Adress" placeholder="Adress"/></div>
+                    <div><input asp-for="UpdatedCustomer.ZipCode" placeholder="Zipcode"/></div>
+                    <div><input asp-for="UpdatedCustomer.City" placeholder="City"/></div>
+                    <div><input asp-for="UpdatedCustomer.Country" placeholder="Country"/></div>
+                    <div><input asp-for="UpdatedCustomer.BirthDate" placeholder="Birthdate"/></div>
+                    <button class="btn btn-primary" asp-page-handler="update" asp-route-id="@Model.UpdatedCustomer?.CustomerID.ToString()">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

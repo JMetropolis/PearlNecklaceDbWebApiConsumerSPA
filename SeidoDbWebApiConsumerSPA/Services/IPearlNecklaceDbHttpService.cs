@@ -7,12 +7,12 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
 {
     public interface IPearlNecklaceDbHttpService
     {
-        Task<IEnumerable<ICustomer>> GetCustomersAsync();
-        Task<ICustomer> GetCustomerAsync(Guid custId);
+        Task<IEnumerable<INecklace>> GetNecklacesAsync();
+        Task<INecklace> GetNecklaceAsync(int necklaceId);
 
-        Task<ICustomer> UpdateCustomerAsync(Customer cus);
+        Task<INecklace> UpdateNecklaceAsync(Necklace necklace);
 
-        Task<ICustomer> CreateCustomerAsync(Customer cus);
-        Task<ICustomer> DeleteCustomerAsync(Guid custId);
+        Task<INecklace> CreateNecklaceAsync(Necklace necklace);
+        Task<INecklace> DeleteNecklaceAsync(int necklaceId);
     }
 }

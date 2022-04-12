@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PearlNecklaceDbWebApiConsumerSPA.Services;
 
-namespace SeidoDb.Web
+namespace PearlNecklaceDb.Web
 {
 	public class Startup
 	{

@@ -18,57 +18,57 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Services
             _headers = new Dictionary<string, string>();
         }
 
-        public async Task<IEnumerable<ICustomer>> GetCustomersAsync()
+        public async Task<IEnumerable<INecklace>> GetNecklacesAsync()
         {
-            var url = new Uri(_baseUri, "/api/customers");
-            var response = await SendRequestAsync<List<Customer>>(url, HttpMethod.Get, _headers);
+            var url = new Uri(_baseUri, "/api/necklaces");
+            var response = await SendRequestAsync<List<Necklace>>(url, HttpMethod.Get, _headers);
 
             return response;
         }
 
-        public async Task<ICustomer> GetCustomerAsync(Guid custId)
+        public async Task<INecklace> GetNecklaceAsync(int necklaceId)
         {
-            var url = new Uri(_baseUri, $"/api/customers/{custId}");
-            var response = await SendRequestAsync<Customer>(url, HttpMethod.Get, _headers);
+            var url = new Uri(_baseUri, $"/api/necklaces/{necklaceId}");
+            var response = await SendRequestAsync<Necklace>(url, HttpMethod.Get, _headers);
 
             return response;
         }
 
-        public async Task<ICustomer> UpdateCustomerAsync(Customer cus)
+        public async Task<INecklace> UpdateNecklaceAsync(Necklace necklace)
         {
-            var url = new Uri(_baseUri, $"/api/customers/{cus.CustomerID}");
+            var url = new Uri(_baseUri, $"/api/necklaces/{necklace.NecklaceID}");
 
             //Confirm customer exisit in Database
-            var cusToUpdate = await SendRequestAsync<Customer>(url, HttpMethod.Get, _headers);
+            var cusToUpdate = await SendRequestAsync<Necklace>(url, HttpMethod.Get, _headers);
             if (cusToUpdate == null)
                 return null;  //Customer does not exist
 
             //Update Customer, always gives null response, NonSuccess response errors are thrown
-            await SendRequestAsync<Customer>(url, HttpMethod.Put, _headers, cus);
+            await SendRequestAsync<Necklace>(url, HttpMethod.Put, _headers, necklace);
 
-            return cus;
+            return necklace;
         }
 
-        public async Task<ICustomer> CreateCustomerAsync(Customer cus)
+        public async Task<INecklace> CreateNecklaceAsync(Necklace necklace)
         {
-            var url = new Uri(_baseUri, "/api/customers");
-            var response = await SendRequestAsync<Customer>(url, HttpMethod.Post, _headers, cus);
+            var url = new Uri(_baseUri, "/api/necklaces");
+            var response = await SendRequestAsync<Necklace>(url, HttpMethod.Post, _headers, necklace);
 
             return response;
         }
 
-        public async Task<ICustomer> DeleteCustomerAsync(Guid custId)
+        public async Task<INecklace> DeleteNecklaceAsync(int necklaceId)
         {
-            var url = new Uri(_baseUri, $"/api/customers/{custId}");
+            var url = new Uri(_baseUri, $"/api/necklaces/{necklaceId}");
 
             //Confirm customer exisit in Database
-            var cusToDel = await SendRequestAsync<Customer>(url, HttpMethod.Get, _headers);
-            if (cusToDel == null)
+            var necklaceToDelete = await SendRequestAsync<Necklace>(url, HttpMethod.Get, _headers);
+            if (necklaceToDelete == null)
                 return null;  //Customer does not exist
 
             //Delete Customer, always gives null response, NonSuccess response errors are thrown
-            await SendRequestAsync<Customer>(url, HttpMethod.Delete, _headers);
-            return cusToDel;
+            await SendRequestAsync<Necklace>(url, HttpMethod.Delete, _headers);
+            return necklaceToDelete;
         }
     }
 }
