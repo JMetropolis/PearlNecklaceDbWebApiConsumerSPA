@@ -8,7 +8,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 	public enum PearlColor { Black, White, Pink }
 	public enum PearlShape { Round, Tear }
 	public enum PearlType { Freshwater, Saltwater }
-	public class Pearl
+	public class Pearl : IPearl
 	{
 		//const int MinPearlSize = 5;
 		//const int MaxPearlSize = 25;
@@ -68,6 +68,21 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 			Color = (PearlColor)rnd.Next((int)PearlColor.Black, (int)PearlColor.Pink + 1);
 			Shape = (PearlShape)rnd.Next((int)PearlShape.Round, (int)PearlShape.Tear + 1);
 			Type = (PearlType)rnd.Next((int)PearlType.Freshwater, (int)PearlType.Saltwater + 1);
+		}
+
+		public Pearl() { }
+
+		public Pearl(IPearl src)
+		{
+			Color = src.Color;
+			Shape = src.Shape;
+			Type = src.Type;
+
+			Price = src.Price;
+			Size = src.Size;
+
+			ID = src.ID;
+			necklaceID = src.necklaceID;
 		}
 
 		public static class Factory

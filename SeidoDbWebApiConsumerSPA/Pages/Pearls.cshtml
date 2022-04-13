@@ -1,0 +1,25 @@
+﻿@page
+@model PearlNecklaceDbWebApiConsumerSPA.Pages.PearlsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Pearl List";
+}
+<div class="row">
+    <h1 class="display-2">@ViewData["Title"]</h1>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr><th>Order Detail for customer @Model.Necklace</th></tr>
+        </thead>
+        <tbody>
+            @if (@Model.Necklace != null)
+            {
+                @foreach (var order in @Model.Necklace._pearls)
+                {
+                    <tr>
+                        <td>@order</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

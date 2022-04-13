@@ -16,7 +16,7 @@
                 @foreach (var necklace in Model.Necklaces)
                 {
                     <tr>
-                        <td>@necklace</td>
+                        <td><a asp-page="/pearls" asp-route-necklaceID="@necklace.NecklaceID.ToString()">@necklace</a></td>
                         <form method="post">
                             <td><button class="btn btn-default" asp-page-handler="delete" asp-route-id="@necklace.NecklaceID.ToString()">Delete</button></td>
                             <td><button class="btn btn-default" asp-page-handler="edit" asp-route-id="@necklace.NecklaceID.ToString()">Edit</button></td>

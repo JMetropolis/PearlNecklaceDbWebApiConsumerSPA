@@ -11,6 +11,8 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
 
         public IEnumerable<INecklace> Necklaces { get; private set; }
 
+        public string ConnectedService => AppConfig.ConfigurationRoot.GetConnectedDbService();
+
         public async Task OnGet()
         {
             Necklaces = await _httpService.GetNecklacesAsync();
