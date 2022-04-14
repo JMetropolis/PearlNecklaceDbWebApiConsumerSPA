@@ -72,6 +72,17 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
                 Console.WriteLine($"{item}");
             }
         }
+
+        public void Copy(INecklace src)
+        {
+            Name = src.Name;
+        }
+        public Necklace() { }
+
+        public Necklace(INecklace src)
+        {
+            Copy(src);
+        }
     }
     public static class Factory
     {

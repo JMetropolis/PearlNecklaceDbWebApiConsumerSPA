@@ -55,14 +55,14 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
             int intID = Int32.Parse(necklaceId);
             var necklace = (Necklace)await _httpService.GetNecklaceAsync(intID);
 
-            //necklace.Copy(UpdatedNecklace);
+            necklace.Copy(UpdatedNecklace);
             await _httpService.UpdateNecklaceAsync(necklace);
 
             return RedirectToPage("/necklaces");
         }
         #endregion
 
-        public NecklacesModel()//IPearlNecklaceDbHttpService service)
+        public NecklacesModel(IPearlNecklaceDbHttpService service)//IPearlNecklaceDbHttpService service)
         {
             this._httpService = new PearlNecklaceDbHttpService();// service;
         }
