@@ -34,11 +34,12 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
         {
             int returnPrice = 0;
             int NumberOfPearls = this._pearls.Count;
+            string name = this.Name;
             foreach (var item in this._pearls)
             {
                 returnPrice += item.Price;
             }
-            return $"Necklace {this.NecklaceID}: {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
+            return $"Necklace {this.NecklaceID}: {name}, {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
         }
 
         public bool Equals(INecklace other) => NecklaceID == other.NecklaceID;

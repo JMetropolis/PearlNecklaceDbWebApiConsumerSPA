@@ -16,7 +16,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
         public async Task OnGet()
         {
             Necklaces = await _httpService.GetNecklacesAsync();
-            Necklaces = Necklaces.OrderBy(c => c.Name).Take(10);
+            Necklaces = Necklaces.OrderBy(c => c.NecklaceID).Take(10);
         }
         public async Task<IActionResult> OnPostDelete(string necklaceId) //zero()
         {
