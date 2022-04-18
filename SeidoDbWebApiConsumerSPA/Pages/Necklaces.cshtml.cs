@@ -36,7 +36,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
             {
                 await _httpService.CreateNecklaceAsync(NewNecklace);
             }
-            return RedirectToPage("/necklace");
+            return RedirectToPage("/necklaces");
         }
         #endregion
 

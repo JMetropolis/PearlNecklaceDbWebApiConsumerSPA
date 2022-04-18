@@ -8,15 +8,15 @@
     <h1 class="display-2">@ViewData["Title"]</h1>
     <table class="table">
         <thead class="thead-inverse">
-            <tr><th>Order Detail for customer @Model.Necklace</th></tr>
+            <tr><th>Pearl Detail for necklace @Model.Necklace</th></tr>
         </thead>
         <tbody>
             @if (@Model.Necklace != null)
             {
-                @foreach (var order in @Model.Necklace._pearls)
+                @foreach (var pearl in @Model.Necklace._pearls)
                 {
                     <tr>
-                        <td>@order</td>
+                        <td>@pearl</td>
                     </tr>
                 }
             }
