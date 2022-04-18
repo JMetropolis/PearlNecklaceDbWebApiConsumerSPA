@@ -31,10 +31,6 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 					return Size * 50;
 				}
 			}
-			set
-			{
-
-			}
 		}
 
 		public int CompareTo(Pearl other)
@@ -46,30 +42,44 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 			return this.Shape.CompareTo(other.Shape);
 		}
 
-		public bool Equals(Pearl other)
-		{
-			return (Size, Color, Shape, Type) == (other.Size, other.Color, other.Shape, other.Type);
-		}
-
 		public bool Equals(IPearl other)
 		{
-			throw new NotImplementedException();
+			return (ID, Size, Color, Shape, Type, Price) == (other.ID, other.Size, other.Color, other.Shape, other.Type, other.Price);
 		}
 
 		public override string ToString()
 		{
-			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek\n \n";
+			return $"ID: {ID}\n | Size: {Size}mm\n | Color: {Color}\n | Shape: {Shape}\n | Type: {Type}\n | Price: {Price} sek\n \n";
 		}
 
+		#region IRandomInit
 		public void RandomInit()
 		{
 			var rnd = new Random();
-			Size = rnd.Next(5, 26);
-			Color = (PearlColor)rnd.Next((int)PearlColor.Black, (int)PearlColor.Pink + 1);
-			Shape = (PearlShape)rnd.Next((int)PearlShape.Round, (int)PearlShape.Tear + 1);
-			Type = (PearlType)rnd.Next((int)PearlType.Freshwater, (int)PearlType.Saltwater + 1);
-		}
+			bool bAllOK = false;
+			while (!bAllOK)
+			{
+				try
+				{
+					Size = rnd.Next(5, 26);
+					Color = (PearlColor)rnd.Next((int)PearlColor.Black, (int)PearlColor.Pink + 1);
+					Shape = (PearlShape)rnd.Next((int)PearlShape.Round, (int)PearlShape.Tear + 1);
+					Type = (PearlType)rnd.Next((int)PearlType.Freshwater, (int)PearlType.Saltwater + 1);
 
+					bAllOK = true;
+				}
+				catch { }
+			}
+		}
+		#endregion
+
+		public Pearl(int NecklaceID)
+		{
+			this.ID = new int();
+			this.necklaceID = NecklaceID;
+
+			RandomInit();
+		}
 		public Pearl() { }
 
 		public Pearl(IPearl src)
@@ -77,32 +87,10 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 			Color = src.Color;
 			Shape = src.Shape;
 			Type = src.Type;
-
-			Price = src.Price;
 			Size = src.Size;
 
 			ID = src.ID;
 			necklaceID = src.necklaceID;
-		}
-
-		public static class Factory
-		{
-			public static Pearl CreateRandomPearl()
-			{
-				var p = new Pearl();
-				p.RandomInit();
-				return p;
-			}
-
-			public static Pearl CreatePearl(int size, PearlColor color, PearlShape shape, PearlType type)
-			{
-				var pearl = new Pearl();
-				pearl.Size = size;
-				pearl.Color = color;
-				pearl.Shape = shape;
-				pearl.Type = type;
-				return pearl;
-			}
 		}
 	}
 }
