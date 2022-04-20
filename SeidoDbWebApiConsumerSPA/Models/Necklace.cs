@@ -14,8 +14,34 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 
         [Column("NecklaceName")]
         public string Name { get; set; }
+
         public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
-        public Pearl this[int idx] => _pearls[idx];
+
+        #region IEquatable
+        public bool Equals(INecklace other) => NecklaceID == other.NecklaceID;
+
+        #endregion
+
+        #region IRandomInit
+        public void RandomInit()
+        {
+            string[] names = "Albanian Andorran Austrian Belarussian Belgian Bosnian Bulgarian Croatian Czech Danish Estonian Finnish French German Greek Hungarian Icelandic Irish Italian Latvian Lithuanian Maltan Moldovoan Monacan Dutch Macedonian Serbian Slovakian Swiss Swedish English Bahaman Canadian Cuban Honduran Argentinian Bolivian Brazilian Colombian Benin Chad Egyptian Gabon Ghanan Kenyan Libyan Togo Zambian Afghani Bhutan Cambodian Chinese Georgian Indian Iranian Iraqi Japanese Kuwait Lebanese Mongoloian NorthKorean Syrian Vietnamese Australian Fiji Samoan Tongan".Split(' ');
+
+            var rnd = new Random();
+            bool bAllOK = false;
+            while (!bAllOK)
+            {
+                try
+                {
+                    this.Name = names[rnd.Next(0, names.Length)];
+
+                    bAllOK = true;
+                }
+                catch { }
+            }
+        }
+        #endregion
+
         public int price
         {
             get
@@ -42,8 +68,6 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
             return $"Necklace {this.NecklaceID}: {name}, {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
         }
 
-        public bool Equals(INecklace other) => NecklaceID == other.NecklaceID;
-
         public int Price()
         {
             int price = 0;
@@ -61,11 +85,6 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
             return price;
         }
 
-        public void RandomInit()
-        {
-            throw new NotImplementedException();
-        }
-
         public void ShowPearls()
         {
             foreach (var item in this._pearls)
@@ -74,61 +93,28 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
             }
         }
 
-        public void Copy(INecklace src)
+        public Necklace Copy(INecklace src)
         {
             Name = src.Name;
+            return this;
         }
-        public Necklace() { }
 
+
+        public Necklace()
+        {
+            this.NecklaceID = new int();
+        }
+
+        public Necklace(bool randominit) : this()
+        {
+            if (randominit)
+                RandomInit();
+        }
+
+        //Copy Constructor
         public Necklace(INecklace src)
         {
-            Copy(src);
-        }
-    }
-    public static class Factory
-    {
-        static readonly string[] names = "Albanian Andorran Austrian Belarussian Belgian Bosnian Bulgarian Croatian Czech Danish Estonian Finnish French German Greek Hungarian Icelandic Irish Italian Latvian Lithuanian Maltan Moldovoan Monacan Dutch Macedonian Serbian Slovakian Swiss Swedish English Bahaman Canadian Cuban Honduran Argentinian Bolivian Brazilian Colombian Benin Chad Egyptian Gabon Ghanan Kenyan Libyan Togo Zambian Afghani Bhutan Cambodian Chinese Georgian Indian Iranian Iraqi Japanese Kuwait Lebanese Mongoloian NorthKorean Syrian Vietnamese Australian Fiji Samoan Tongan".Split(' ');
-
-        /// <summary>
-        /// Create a randomized necklace with 10 to 51 random pearls.
-        /// </summary>
-        /// <returns>Necklace object with pearls.</returns>
-        public static Necklace CreateRandom()
-        {
-            var necklace = new Necklace();
-            var rnd = new Random();
-            necklace.Name = names[rnd.Next(0, names.Length)];
-
-            var rndList = new List<Pearl>();
-            int pearls = rnd.Next(10, 51);
-            for (int i = 0; i < pearls; i++)
-            {
-                Pearl pearl = Pearl.Factory.CreateRandomPearl();
-                rndList.Add(pearl);
-            }
-            necklace._pearls = rndList;
-            return necklace;
-        }
-
-        /// <summary>
-        /// Create a randomized necklace with a set amount of pearls.
-        /// </summary>
-        /// <param name="amount"> Amount of randomized pearls created.</param>
-        /// <returns>Necklace object with pearls.</returns>
-        public static Necklace CreateRandom(int amount)
-        {
-            var necklace = new Necklace();
-            var rnd = new Random();
-            necklace.Name = names[rnd.Next(0, names.Length)];
-
-            var rndList = new List<Pearl>();
-            for (int i = 0; i < amount; i++)
-            {
-                Pearl pearl = Pearl.Factory.CreateRandomPearl();
-                rndList.Add(pearl);
-            }
-            necklace._pearls = rndList;
-            return necklace;
+            this.Copy(src);
         }
     }
 }

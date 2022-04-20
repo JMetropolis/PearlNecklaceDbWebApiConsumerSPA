@@ -10,10 +10,6 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
     {
         public int NecklaceID { get; }
         public string Name { get; set; }
-        public abstract List<Pearl> _pearls { get; set; }
         public int price { get; set; }
-        public void ShowPearls();
-        public int Price();
-
     }
 }
