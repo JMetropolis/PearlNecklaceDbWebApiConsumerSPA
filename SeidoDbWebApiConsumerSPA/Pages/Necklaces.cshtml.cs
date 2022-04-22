@@ -34,6 +34,7 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Pages
         {
             if ((NewNecklace != null) && ModelState.IsValid)
             {
+                NewNecklace._pearls.Add(Pearl.Factory.CreateRandomPearl());
                 await _httpService.CreateNecklaceAsync(NewNecklace);
             }
             return RedirectToPage("/necklaces");

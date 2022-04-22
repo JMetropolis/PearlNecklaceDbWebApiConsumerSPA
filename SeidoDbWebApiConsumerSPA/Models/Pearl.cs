@@ -92,5 +92,25 @@ namespace PearlNecklaceDbWebApiConsumerSPA.Models
 			ID = src.ID;
 			necklaceID = src.necklaceID;
 		}
+
+		public static class Factory
+		{
+			public static Pearl CreateRandomPearl()
+			{
+				var p = new Pearl();
+				p.RandomInit();
+				return p;
+			}
+
+			public static Pearl CreatePearl(int size, PearlColor color, PearlShape shape, PearlType type)
+			{
+				var pearl = new Pearl();
+				pearl.Size = size;
+				pearl.Color = color;
+				pearl.Shape = shape;
+				pearl.Type = type;
+				return pearl;
+			}
+		}
 	}
 }
